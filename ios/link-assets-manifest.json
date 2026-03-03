@@ -1,0 +1,77 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Epilogue-Black.ttf",
+      "sha1": "d679b6c1456081d8dfa3a7a0ff1f8e04fc999f72"
+    },
+    {
+      "path": "assets/fonts/Epilogue-Medium.ttf",
+      "sha1": "cf37ea4bfa06f5dafa3bc7f36325d67060f8bac9"
+    },
+    {
+      "path": "assets/fonts/Epilogue-ThinItalic.ttf",
+      "sha1": "6b87e60000fe454515122755bf5eaff164b21bac"
+    },
+    {
+      "path": "assets/fonts/Epilogue-ExtraLightItalic.ttf",
+      "sha1": "b56bdf63192200e95430398eec866e4e87241f6a"
+    },
+    {
+      "path": "assets/fonts/Epilogue-SemiBoldItalic.ttf",
+      "sha1": "f1ead0f1271ddf16a298a587ddc4208bfeaa71a5"
+    },
+    {
+      "path": "assets/fonts/Epilogue-ExtraLight.ttf",
+      "sha1": "daccfebc13810c8f2e41a7c597b59474d1012b55"
+    },
+    {
+      "path": "assets/fonts/Epilogue-BoldItalic.ttf",
+      "sha1": "03070595c26e3a84037917f679c4223aaea87935"
+    },
+    {
+      "path": "assets/fonts/Epilogue-ExtraBold.ttf",
+      "sha1": "075e1b98b94e1b0062398047ec866331392be83d"
+    },
+    {
+      "path": "assets/fonts/Epilogue-MediumItalic.ttf",
+      "sha1": "9131f6a2ccac50f0c42c5bda071ce0d79a1180b7"
+    },
+    {
+      "path": "assets/fonts/Epilogue-BlackItalic.ttf",
+      "sha1": "01966955c974e8d96b6d6b7bb70d8f5ceeb48f21"
+    },
+    {
+      "path": "assets/fonts/Epilogue-SemiBold.ttf",
+      "sha1": "ff979eae708b7f3763e5c03e9b6fc430faa6db54"
+    },
+    {
+      "path": "assets/fonts/Epilogue-Regular.ttf",
+      "sha1": "fa1a793ff026b117957fa99126586b3deb6195ba"
+    },
+    {
+      "path": "assets/fonts/Epilogue-Thin.ttf",
+      "sha1": "3a0ce2f57323d92de71930560d61618f4070ce13"
+    },
+    {
+      "path": "assets/fonts/Epilogue-Light.ttf",
+      "sha1": "32ebe974d9b9f681f8b044367ac87aef2171a7c0"
+    },
+    {
+      "path": "assets/fonts/Epilogue-ExtraBoldItalic.ttf",
+      "sha1": "9341eed25ca5fabf2d9702d3254a13effa909126"
+    },
+    {
+      "path": "assets/fonts/Epilogue-LightItalic.ttf",
+      "sha1": "b447841aa4ea9146df7cd71b93058e440645cd4e"
+    },
+    {
+      "path": "assets/fonts/Epilogue-Italic.ttf",
+      "sha1": "66ce6761b609be0532f7ac65ebdca4fb209e11a0"
+    },
+    {
+      "path": "assets/fonts/Epilogue-Bold.ttf",
+      "sha1": "9fcad4bc2087175bd56a13e3dc90172abc6a8413"
+    }
+  ]
+}
