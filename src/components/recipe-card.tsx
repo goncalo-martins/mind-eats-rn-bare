@@ -15,9 +15,9 @@ const RecipeCard = ({ item }: { item: IRecipe }) => {
 
   const { favourites } = useRecipes();
 
-  useEffect(() => {
+    useEffect(() => {
     if (item?.id) {
-      setIsFavorite(favourites.includes(item.id));
+      setIsFavorite(favourites.some((fav) => fav.id === item.id));
     }
   }, [favourites, item]);
 

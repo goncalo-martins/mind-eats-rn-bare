@@ -65,13 +65,15 @@ const RecipeDetails = ({ route }) => {
   }, [recipeId]);
 
   useEffect(() => {
-    if (recipe) {
-      setIsFavorite(favourites.includes(recipe.id));
+    if (recipe && favourites.some((fav) => fav.id === recipe.id)) {
+      setIsFavorite(true);
+    } else {
+      setIsFavorite(false);
     }
   }, [favourites, recipe]);
 
   const handleAddToFavourites = () => {
-    if (recipe) addToFavourites(recipe.id);
+    if (recipe) addToFavourites(recipe);
   };
 
   if (!recipe) {
@@ -102,11 +104,7 @@ const RecipeDetails = ({ route }) => {
           )
         }
         style={styles.favoriteBtn}
-        onPress={() => {
-          if (recipe) {
-            addToFavourites(recipe.id);
-          }
-        }}
+        onPress={handleAddToFavourites}
       />
       <ActionButton
         icon={

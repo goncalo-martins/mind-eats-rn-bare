@@ -12,6 +12,7 @@
     "e2e:test": "detox test --configuration ios.sim.debug"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^3.0.1",
     "@react-native/new-app-screen": "0.84.1",
     "@react-navigation/bottom-tabs": "^7.15.5",
     "@react-navigation/elements": "^2.6.3",

@@ -1,16 +1,24 @@
-import { fetchRecipes, searchRecipes } from '../api/recipes';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { IRecipe } from '../types/recipe';
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { fetchRecipes, searchRecipes } from '../api/recipes';
 
 interface IRecipesContextProps {
   recipes: IRecipe[];
-  favourites: number[];
+  filteredRecipes: IRecipe[];
+  favourites: IRecipe[];
   isLoading: boolean;
   fetchAllRecipes: () => Promise<void>;
   searchRecipesByQuery: (query: string) => Promise<void>;
-  addToFavourites: (id: number) => void;
-  filteredRecipes: IRecipe[];
   setFilteredRecipes: (recipes: IRecipe[]) => void;
+  addToFavourites: (recipe: IRecipe) => void;
 }
 
 const RecipesContext = createContext<IRecipesContextProps | undefined>(
@@ -20,8 +28,23 @@ const RecipesContext = createContext<IRecipesContextProps | undefined>(
 export const RecipesProvider = ({ children }: { children: ReactNode }) => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
   const [filteredRecipes, setFilteredRecipes] = useState<IRecipe[]>([]);
-  const [favourites, setFavourites] = useState<number[]>([]);
+  const [favourites, setFavourites] = useState<IRecipe[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadFavourites = async () => {
+      try {
+        const storedFavourites = await AsyncStorage.getItem('favourites');
+        if (storedFavourites) {
+          setFavourites(JSON.parse(storedFavourites));
+        }
+      } catch (error) {
+        console.error('Failed to load favourites', error);
+      }
+    };
+
+    loadFavourites();
+  }, []);
 
   const fetchAllRecipes = async () => {
     setIsLoading(true);
@@ -46,25 +69,28 @@ export const RecipesProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const addToFavourites = (id: number) => {
-    if (favourites.includes(id)) {
-      setFavourites((prev) => prev.filter((favId) => favId !== id));
-    } else {
-      setFavourites((prev) => [...prev, id]);
-    }
+  const addToFavourites = async (recipe: IRecipe) => {
+    setFavourites((prev) => {
+      const updatedFavourites = prev.some((fav) => fav.id === recipe.id)
+        ? prev.filter((fav) => fav.id !== recipe.id)
+        : [...prev, recipe];
+
+      AsyncStorage.setItem('favourites', JSON.stringify(updatedFavourites));
+      return updatedFavourites;
+    });
   };
 
   return (
     <RecipesContext.Provider
       value={{
         recipes,
+        filteredRecipes,
         favourites,
         isLoading,
         fetchAllRecipes,
         searchRecipesByQuery,
-        addToFavourites,
-        filteredRecipes,
         setFilteredRecipes,
+        addToFavourites,
       }}
     >
       {children}
