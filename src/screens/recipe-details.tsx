@@ -1,19 +1,19 @@
-import { useNavigation } from "@react-navigation/native";
-import { fetchRecipeDetailsById } from "../api/recipes";
-import ArrowLeftIcon from "../../assets/images/icons/arrow-left";
-import { default as FavouriteIcon } from "../../assets/images/icons/favourite";
-import FavouritesOutlineIcon from "../../assets/images/icons/favourites-outline";
-import ActionButton from "../components/action-button";
-import Button from "../components/button";
-import DetailsCard from "../components/details-card";
-import List from "../components/list";
-import { Rating } from "../components/rating";
-import Tag from "../components/tag";
-import { BaseColors } from "../constants/colors";
-import { typography } from "../constants/typography";
-import { useRecipes } from "../context/recipes-context";
-import { IRecipe } from "../types/recipe";
-import { useEffect, useState } from "react";
+import { useNavigation } from '@react-navigation/native';
+import { fetchRecipeDetailsById } from '../api/recipes';
+import ArrowLeftIcon from '../../assets/images/icons/arrow-left';
+import { default as FavouriteIcon } from '../../assets/images/icons/favourite';
+import FavouritesOutlineIcon from '../../assets/images/icons/favourites-outline';
+import ActionButton from '../components/action-button';
+import Button from '../components/button';
+import DetailsCard from '../components/details-card';
+import List from '../components/list';
+import { Rating } from '../components/rating';
+import Tag from '../components/tag';
+import { BaseColors } from '../constants/colors';
+import { typography } from '../constants/typography';
+import { useRecipes } from '../context/recipes-context';
+import { IRecipe } from '../types/recipe';
+import { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -21,8 +21,8 @@ import {
   StyleSheet,
   Text,
   View,
-} from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+} from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const RecipeDetails = ({ route }) => {
   const { recipeId } = route.params;
@@ -33,23 +33,49 @@ const RecipeDetails = ({ route }) => {
 
   const styles = StyleSheet.create({
     favoriteBtn: {
-      position: "absolute",
+      position: 'absolute',
       top: insets.top,
       right: 16,
     },
     backBtn: {
-      position: "absolute",
+      position: 'absolute',
       top: insets.top,
       left: 16,
     },
     loaderContainer: {
       flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     imageBanner: {
-      width: "100%",
+      width: '100%',
       height: 300,
+    },
+    scrollView: {
+      flex: 1,
+      alignContent: 'center',
+      paddingTop: 24,
+    },
+    listContainer: {
+      gap: 32,
+    },
+    container: {
+      paddingHorizontal: 16,
+      paddingBottom: 48,
+      borderRadius: 8,
+      marginBottom: 16,
+    },
+    tagsContainer: {
+      paddingVertical: 24,
+      flexDirection: 'row',
+      gap: 6,
+      flexWrap: 'wrap',
+    },
+    detailCardsContainer: {
+      flexDirection: 'row',
+      gap: 6,
+      paddingBottom: 32,
+      justifyContent: 'center',
     },
   });
 
@@ -59,14 +85,14 @@ const RecipeDetails = ({ route }) => {
 
   useEffect(() => {
     if (recipeId) {
-      fetchRecipeDetailsById(Number(recipeId)).then((data) => {
+      fetchRecipeDetailsById(Number(recipeId)).then(data => {
         setRecipe(data);
       });
     }
   }, [recipeId]);
 
   useEffect(() => {
-    if (recipe && favourites.some((fav) => fav.id === recipe.id)) {
+    if (recipe && favourites.some(fav => fav.id === recipe.id)) {
       setIsFavorite(true);
     } else {
       setIsFavorite(false);
@@ -121,77 +147,50 @@ const RecipeDetails = ({ route }) => {
         onPress={() => navigation.goBack()}
       />
 
-      <ScrollView
-        style={{
-          flex: 1,
-          alignContent: "center",
-          paddingTop: 24,
-        }}
-      >
-        <View
-          style={{
-            paddingHorizontal: 16,
-            paddingBottom: 48,
-            borderRadius: 8,
-            marginBottom: 16,
-          }}
-        >
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.container}>
           <Text
             style={[
               typography.captionM,
               { color: BaseColors.highlightDarkest, paddingBottom: 6 },
             ]}
           >
-            {recipe.mealType.join(", ").toUpperCase()}
+            {recipe.mealType.join(', ').toUpperCase()}
           </Text>
           <Text style={[typography.h1]}>{recipe.name}</Text>
 
-          <View
-            style={{
-              paddingVertical: 24,
-              flexDirection: "row",
-              gap: 6,
-              flexWrap: "wrap",
-            }}
-          >
+          <View style={styles.tagsContainer}>
             {recipe.tags.map((tag: string) => (
               <Tag key={tag} title={tag} />
             ))}
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              gap: 6,
-              paddingBottom: 32,
-              justifyContent: "center",
-            }}
-          >
+          <View style={styles.detailCardsContainer}>
             <DetailsCard
-              title={"Servings"}
+              title={'Servings'}
               description={`${recipe.servings} people`}
             />
             <DetailsCard
-              title={"Cook Time"}
+              title={'Cook Time'}
               description={`${recipe.cookTimeMinutes} minutes`}
             />
-            <DetailsCard title={"Rating"}>
+            <DetailsCard title={'Rating'}>
               <Rating rating={recipe.rating} />
             </DetailsCard>
           </View>
-          <View style={{ gap: 32 }}>
+          <View style={styles.listContainer}>
             <List
-              title={"Ingredients"}
-              type={"bullet"}
+              title={'Ingredients'}
+              type={'bullet'}
               items={recipe.ingredients}
             />
             <List
-              title={"Instructions"}
-              type={"ordered"}
+              title={'Instructions'}
+              type={'ordered'}
               items={recipe.instructions}
             />
           </View>
           <Button
-            title={isFavorite ? "Remove Favourite" : "Add to Favourites"}
+            title={isFavorite ? 'Remove Favourite' : 'Add to Favourites'}
             onPress={handleAddToFavourites}
             leftIcon={
               isFavorite ? (
@@ -211,7 +210,7 @@ const RecipeDetails = ({ route }) => {
           />
         </View>
       </ScrollView>
-     </> 
+    </>
   );
 };
 

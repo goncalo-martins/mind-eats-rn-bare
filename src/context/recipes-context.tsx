@@ -1,4 +1,3 @@
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   createContext,
@@ -53,6 +52,8 @@ export const RecipesProvider = ({ children }: { children: ReactNode }) => {
       if (data && data.total === 0) setIsLoading(false);
       setRecipes(data.recipes);
     } catch (error) {
+      console.error('Failed to load recipes', error);
+
       setIsLoading(false);
     }
   };
@@ -65,14 +66,15 @@ export const RecipesProvider = ({ children }: { children: ReactNode }) => {
       if (data && data.total === 0) setIsLoading(false);
       setFilteredRecipes(data.recipes);
     } catch (error) {
+      console.error('Failed to load recipes', error);
       setIsLoading(false);
     }
   };
 
   const addToFavourites = async (recipe: IRecipe) => {
-    setFavourites((prev) => {
-      const updatedFavourites = prev.some((fav) => fav.id === recipe.id)
-        ? prev.filter((fav) => fav.id !== recipe.id)
+    setFavourites(prev => {
+      const updatedFavourites = prev.some(fav => fav.id === recipe.id)
+        ? prev.filter(fav => fav.id !== recipe.id)
         : [...prev, recipe];
 
       AsyncStorage.setItem('favourites', JSON.stringify(updatedFavourites));

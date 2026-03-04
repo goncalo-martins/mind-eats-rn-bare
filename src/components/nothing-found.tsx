@@ -1,17 +1,16 @@
-import NoResultsIcon from "../../assets/images/icons/no-results";
-import { typography } from "../constants/typography";
-import { StyleSheet, Text, View } from "react-native";
+import NoResultsIcon from '../../assets/images/icons/no-results';
+import { typography } from '../constants/typography';
+import { StyleSheet, Text, View } from 'react-native';
 
-const NothingFoundCard = ({ search, testID }: { search: string; testID?: string }) => {
+const NothingFoundCard = ({
+  search,
+  testID,
+}: {
+  search: string;
+  testID?: string;
+}) => {
   return (
-    <View
-      testID={testID}
-      style={{
-        justifyContent: "center",
-        alignItems: "center",
-        paddingHorizontal: 16,
-      }}
-    >
+    <View testID={testID} style={styles.container}>
       <NoResultsIcon />
       <Text style={styles.title}>Nothing Found</Text>
       <Text style={styles.description}>
@@ -23,6 +22,11 @@ const NothingFoundCard = ({ search, testID }: { search: string; testID?: string 
 };
 
 const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+  },
   title: {
     ...typography.h3,
     paddingTop: 22,
@@ -30,11 +34,11 @@ const styles = StyleSheet.create({
   description: {
     ...typography.bodyM,
     paddingTop: 12,
-    textAlign: "center",
+    textAlign: 'center',
   },
   searchText: {
     ...typography.bodyM,
-    fontWeight: "700",
+    fontWeight: '700',
   },
 });
 

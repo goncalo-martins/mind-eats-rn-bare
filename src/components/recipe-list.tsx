@@ -1,6 +1,6 @@
-import { BaseColors } from "../constants/colors";
-import { typography } from "../constants/typography";
-import { IRecipe } from "../types/recipe";
+import { BaseColors } from '../constants/colors';
+import { typography } from '../constants/typography';
+import { IRecipe } from '../types/recipe';
 import {
   ActivityIndicator,
   FlatList,
@@ -8,8 +8,8 @@ import {
   StyleSheet,
   Text,
   View,
-} from "react-native";
-import RecipeCard from "./recipe-card";
+} from 'react-native';
+import RecipeCard from './recipe-card';
 
 const RecipeList = ({
   items,
@@ -30,10 +30,10 @@ const RecipeList = ({
     );
   }
   return (
-    <ScrollView style={{ flex: 1, paddingHorizontal: 16 }}>
+    <ScrollView style={styles.scrollView} testID="recipe-list">
       {title && !isSearching && <Text style={styles.title}>{title}</Text>}
       {items.length === 0 && !isLoading ? (
-        <View testID="empty-recipe-list" style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View testID="empty-recipe-list" style={styles.emptyContainer}>
           <Text>No recipes found</Text>
         </View>
       ) : (
@@ -58,10 +58,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  scrollView: {
+    flex: 1,
+    paddingHorizontal: 16,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   loaderContainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     ...typography.h1,
@@ -73,7 +82,7 @@ const styles = StyleSheet.create({
   },
   searchText: {
     ...typography.bodyM,
-    fontWeight: "700",
+    fontWeight: '700',
   },
 });
 

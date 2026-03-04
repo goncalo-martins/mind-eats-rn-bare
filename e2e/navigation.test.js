@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe('Navigation Tests', () => {
   beforeAll(async () => {
     await device.launchApp();
@@ -11,7 +12,7 @@ describe('Navigation Tests', () => {
     // Navigate to Favourites
     await element(by.text('Favourites')).tap();
     await expect(element(by.text('My Favourites'))).toBeVisible();
-    
+
     // Navigate back to Home
     await element(by.text('Home')).tap();
     await expect(element(by.text('Popular'))).toBeVisible();

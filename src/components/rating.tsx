@@ -1,23 +1,42 @@
-import { View } from "react-native";
+import { View, StyleSheet } from 'react-native';
 
-import StarFullIcon from "../../assets/images/icons/star-full";
-import StarHalfIcon from "../../assets/images/icons/star-half";
-import StarOutlinedIcon from "../../assets/images/icons/star-outlined";
+import StarFullIcon from '../../assets/images/icons/star-full';
+import StarHalfIcon from '../../assets/images/icons/star-half';
+import StarOutlinedIcon from '../../assets/images/icons/star-outlined';
 
 export const Rating = ({ rating }: { rating: number }) => {
   return (
-    <View
-      style={{ flexDirection: "row", gap: 2, height: 16, alignItems: "center" }}
-    >
+    <View style={styles.container}>
       {Array.from({ length: 5 }, (_, index) => {
         if (index < Math.floor(rating)) {
-          return <View key={index} testID="star-full"><StarFullIcon /></View>;
+          return (
+            <View key={index} testID="star-full">
+              <StarFullIcon />
+            </View>
+          );
         } else if (index === Math.floor(rating) && rating % 1 !== 0) {
-          return <View key={index} testID="star-half"><StarHalfIcon /></View>;
+          return (
+            <View key={index} testID="star-half">
+              <StarHalfIcon />
+            </View>
+          );
         } else {
-          return <View key={index} testID="star-empty" ><StarOutlinedIcon /></View>;
+          return (
+            <View key={index} testID="star-empty">
+              <StarOutlinedIcon />
+            </View>
+          );
         }
       })}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    gap: 2,
+    height: 16,
+    alignItems: 'center',
+  },
+});

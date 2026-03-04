@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flex: 1,
     paddingRight: 12,
-    wordWrap: "break-word",
   },
   stepContainer: {
     width: "100%",

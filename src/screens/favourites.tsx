@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -51,57 +50,56 @@ const Favourites = () => {
 
   return (
     <View testID="favourites-screen" style={styles.container}>
-        <Text style={styles.title}>My Favourites</Text>
-        {favourites.length === 0 && (
-          <View style={styles.noFavouriteContainer}>
-            <NoFavouriteIcon size={64} />
-            <Text style={styles.noFavouritesTitle}>
-              Your Favorites Are Empty
+      <Text style={styles.title}>My Favourites</Text>
+      {favourites.length === 0 && (
+        <View style={styles.noFavouriteContainer}>
+          <NoFavouriteIcon size={64} />
+          <Text style={styles.noFavouritesTitle}>Your Favorites Are Empty</Text>
+          <Text style={styles.noFavouritesDescription}>
+            {"You haven't saved anything here yet"}
+          </Text>
+        </View>
+      )}
+
+      <View testID='favourite-list'>
+      {favourites.map(fav => (
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 16,
+            marginBottom: 16,
+          }}
+          key={Number(fav?.id)}
+          testID='favourite-item'
+        >
+          <Image
+            source={{ uri: fav?.image }}
+            style={{ width: 80, height: 72, borderRadius: 16 }}
+          />
+          <View style={{ flexDirection: 'column', flex: 1, gap: 6 }}>
+            <Text
+              style={{
+                ...typography.captionM,
+                color: BaseColors.highlightDark,
+              }}
+            >
+              {fav?.mealType?.join(', ')?.toUpperCase()}
             </Text>
-            <Text style={styles.noFavouritesDescription}>
-              {"You haven't saved anything here yet"}
+            <Text
+              style={{
+                ...typography.h3,
+                color: BaseColors.neutralDarkDarkest,
+              }}
+              numberOfLines={2}
+            >
+              {fav?.name}
             </Text>
           </View>
-        )}
-
-        {favourites.map((fav) => (
-          
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  gap: 16,
-                  marginBottom: 16,
-                }}
-                key={Number(fav?.id)}
-              >
-                <Image
-                  source={{ uri: fav?.image }}
-                  style={{ width: 80, height: 72, borderRadius: 16 }}
-                />
-                <View style={{ flexDirection: 'column', flex: 1, gap: 6 }}>
-                  <Text
-                    style={{
-                      ...typography.captionM,
-                      color: BaseColors.highlightDark,
-                    }}
-                  >
-                    {fav?.mealType?.join(', ')?.toUpperCase()}
-                  </Text>
-                  <Text
-                    style={{
-                      ...typography.h3,
-                      color: BaseColors.neutralDarkDarkest,
-                    }}
-                    numberOfLines={2}
-                  >
-                    {fav?.name}
-                  </Text>
-                </View>
-              </View>
-
-                   ))}
-      </View>
+        </View>
+      ))}
+        </View>
+    </View>
   );
 };
 
