@@ -50,7 +50,7 @@ const Favourites = () => {
   });
 
   return (
-      <View style={styles.container}>
+    <View testID="favourites-screen" style={styles.container}>
         <Text style={styles.title}>My Favourites</Text>
         {favourites.length === 0 && (
           <View style={styles.noFavouriteContainer}>

@@ -24,7 +24,7 @@ const RecipeList = ({
 }) => {
   if (isLoading && items.length === 0) {
     return (
-      <View style={styles.loaderContainer}>
+      <View testID="recipe-list-loading" style={styles.loaderContainer}>
         <ActivityIndicator size="large" color={BaseColors.highlightDarkest} />
       </View>
     );
@@ -32,17 +32,24 @@ const RecipeList = ({
   return (
     <ScrollView style={{ flex: 1, paddingHorizontal: 16 }}>
       {title && !isSearching && <Text style={styles.title}>{title}</Text>}
-      <FlatList
-        scrollEnabled={false}
-        numColumns={2}
-        style={styles.container}
-        data={items}
-        renderItem={({ item }) => <RecipeCard item={item} />}
-        keyExtractor={(item, index) => index.toString()}
-        refreshing={isLoading}
-        ItemSeparatorComponent={() => <View style={{ width: 20 }} />}
-        columnWrapperStyle={{ gap: 16 }}
-      />
+      {items.length === 0 && !isLoading ? (
+        <View testID="empty-recipe-list" style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text>No recipes found</Text>
+        </View>
+      ) : (
+        <FlatList
+          testID="recipe-flat-list"
+          scrollEnabled={false}
+          numColumns={2}
+          style={styles.container}
+          data={items}
+          renderItem={({ item }) => <RecipeCard item={item} />}
+          keyExtractor={(item, index) => index.toString()}
+          refreshing={isLoading}
+          ItemSeparatorComponent={() => <View style={{ width: 20 }} />}
+          columnWrapperStyle={{ gap: 16 }}
+        />
+      )}
     </ScrollView>
   );
 };

@@ -24,6 +24,8 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
+          unmountOnBlur: true,
+          tabBarTestID: 'home-tab',
           tabBarLabel: ({ focused, color, children }) => (
             <Text
               style={{
@@ -46,6 +48,8 @@ export default function TabLayout() {
         name="favourites"
         options={{
           title: 'Favourites',
+          unmountOnBlur: true,
+          tabBarTestID: 'favourites-tab',
           tabBarLabel: ({ focused, color, children }) => (
             <Text
               style={{

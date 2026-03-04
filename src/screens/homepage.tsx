@@ -60,9 +60,10 @@ const Homepage = () => {
   }, [searchText]);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="homepage">
       <Image source={LogoIcon} style={styles.icon} resizeMode="contain" />
       <Input
+        testID="search-input"
         placeholder="Search by name or meal type"
         leftIcon={<SearchIcon />}
         onChange={(text) => {
@@ -73,7 +74,7 @@ const Homepage = () => {
         }}
       />
       {isSearching && filteredRecipes.length === 0 && !isLoading ? (
-        <NothingFoundCard search={searchText} />
+        <NothingFoundCard testID="nothing-found-message" search={searchText} />
       ) : (
         <RecipeList
           title={"Popular"}

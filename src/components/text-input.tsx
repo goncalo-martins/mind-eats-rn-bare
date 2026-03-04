@@ -5,10 +5,12 @@ const Input = ({
   placeholder,
   leftIcon,
   onChange,
+  testID,
 }: {
   placeholder?: string;
   leftIcon?: React.ReactNode;
   onChange?: (text: string) => void;
+  testID?: string;
 }) => {
   return (
     <View style={styles.container}>
@@ -18,6 +20,7 @@ const Input = ({
         placeholder={placeholder}
         placeholderTextColor={BaseColors.neutralDarkLightest}
         onChangeText={onChange}
+        testID={testID}
       />
     </View>
   );

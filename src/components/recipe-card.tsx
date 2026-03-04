@@ -15,7 +15,7 @@ const RecipeCard = ({ item }: { item: IRecipe }) => {
 
   const { favourites } = useRecipes();
 
-    useEffect(() => {
+  useEffect(() => {
     if (item?.id) {
       setIsFavorite(favourites.some((fav) => fav.id === item.id));
     }
@@ -23,6 +23,7 @@ const RecipeCard = ({ item }: { item: IRecipe }) => {
 
   return (
     <Pressable
+      testID="recipe-card"
       style={styles.container}
       onPress={() =>
         navigation.navigate("RecipeDetails", {
@@ -32,6 +33,7 @@ const RecipeCard = ({ item }: { item: IRecipe }) => {
     >
       {isFavorite && (
         <ActionButton
+          testID="favorite-icon"
           icon={
             <FavouriteIcon
               color={BaseColors.highlightDark}
@@ -43,7 +45,7 @@ const RecipeCard = ({ item }: { item: IRecipe }) => {
         />
       )}
 
-      <Image source={{ uri: item.image }} style={styles.mealImage} />
+      <Image testID="recipe-image" source={{ uri: item.image }} style={styles.mealImage} />
       <Text style={styles.mealType}>
         {item.mealType.join(", ").toUpperCase()}
       </Text>

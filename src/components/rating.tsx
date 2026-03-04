@@ -11,11 +11,11 @@ export const Rating = ({ rating }: { rating: number }) => {
     >
       {Array.from({ length: 5 }, (_, index) => {
         if (index < Math.floor(rating)) {
-          return <StarFullIcon key={index} />;
+          return <View key={index} testID="star-full"><StarFullIcon /></View>;
         } else if (index === Math.floor(rating) && rating % 1 !== 0) {
-          return <StarHalfIcon key={index} />;
+          return <View key={index} testID="star-half"><StarHalfIcon /></View>;
         } else {
-          return <StarOutlinedIcon key={index} />;
+          return <View key={index} testID="star-empty" ><StarOutlinedIcon /></View>;
         }
       })}
     </View>

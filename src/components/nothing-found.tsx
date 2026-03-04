@@ -2,9 +2,10 @@ import NoResultsIcon from "../../assets/images/icons/no-results";
 import { typography } from "../constants/typography";
 import { StyleSheet, Text, View } from "react-native";
 
-const NothingFoundCard = ({ search }: { search: string }) => {
+const NothingFoundCard = ({ search, testID }: { search: string; testID?: string }) => {
   return (
     <View
+      testID={testID}
       style={{
         justifyContent: "center",
         alignItems: "center",

@@ -1,10 +1,12 @@
-import { BaseColors } from '../../../src/constants/colors';import React from "react";
+import { BaseColors } from '../../../src/constants/colors';
+import React from "react";
 import Svg, { Path } from "react-native-svg";
 
 export default function StarHalfIcon({
   width = 12,
   height = 12,
   color = BaseColors.highlightDarkest,
+  
 }) {
   return (
     <Svg width={width} height={height} viewBox="0 0 12 12" fill="none">

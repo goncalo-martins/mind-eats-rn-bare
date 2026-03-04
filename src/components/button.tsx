@@ -8,13 +8,15 @@ const Button = ({
   title,
   onPress,
   leftIcon,
+  testID,
 }: {
   title: string;
   onPress: () => void;
   leftIcon?: React.ReactNode;
+  testID?: string;
 }) => {
   return (
-    <Pressable style={styles.container} onPress={onPress}>
+    <Pressable style={styles.container} onPress={onPress} testID={testID}>
       {leftIcon && leftIcon}
       <Text style={typography.h3}>{title}</Text>
     </Pressable>

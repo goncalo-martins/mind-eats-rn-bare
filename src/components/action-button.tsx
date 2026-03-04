@@ -4,17 +4,19 @@ const ActionButton = ({
   icon,
   onPress,
   style,
+  testID,
 }: {
   icon: React.ReactNode;
   onPress?: () => void;
   style?: object;
+  testID?: string;
 }) => {
   return onPress ? (
-    <Pressable style={[styles.container, style]} onPress={onPress}>
+    <Pressable style={[styles.container, style]} onPress={onPress} testID={testID}>
       {icon}
     </Pressable>
   ) : (
-    <View style={[styles.container, style]}>{icon}</View>
+    <View style={[styles.container, style]} testID={testID}>{icon}</View>
   );
 };
 

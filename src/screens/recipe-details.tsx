@@ -13,7 +13,6 @@ import { BaseColors } from "../constants/colors";
 import { typography } from "../constants/typography";
 import { useRecipes } from "../context/recipes-context";
 import { IRecipe } from "../types/recipe";
-// import { useRouter, useSearchParams } from "expo-router/build/hooks";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -60,7 +59,9 @@ const RecipeDetails = ({ route }) => {
 
   useEffect(() => {
     if (recipeId) {
-      fetchRecipeDetailsById(Number(recipeId)).then((data) => setRecipe(data));
+      fetchRecipeDetailsById(Number(recipeId)).then((data) => {
+        setRecipe(data);
+      });
     }
   }, [recipeId]);
 
@@ -88,6 +89,7 @@ const RecipeDetails = ({ route }) => {
     <>
       <Image source={{ uri: recipe.image }} style={styles.imageBanner} />
       <ActionButton
+        testID="favourite-button"
         icon={
           isFavorite ? (
             <FavouriteIcon
@@ -107,6 +109,7 @@ const RecipeDetails = ({ route }) => {
         onPress={handleAddToFavourites}
       />
       <ActionButton
+        testID="back-button"
         icon={
           <ArrowLeftIcon
             color={BaseColors.neutralLightLight}
@@ -141,7 +144,7 @@ const RecipeDetails = ({ route }) => {
           >
             {recipe.mealType.join(", ").toUpperCase()}
           </Text>
-          <Text style={[typography.h1, {}]}>{recipe.name}</Text>
+          <Text style={[typography.h1]}>{recipe.name}</Text>
 
           <View
             style={{
@@ -208,7 +211,7 @@ const RecipeDetails = ({ route }) => {
           />
         </View>
       </ScrollView>
-    </>
+     </> 
   );
 };
 
